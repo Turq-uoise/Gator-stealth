@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://q6fg6p7vej0"]
+
+[ext_resource type="PackedScene" uid="uid://8bpffyx410eg" path="res://Components/Assets/wholeHam.glb" id="1_2dvxu"]
+[ext_resource type="Script" path="res://Components/Scripts/Collectible.gd" id="1_6t8al"]
+
+[sub_resource type="Curve" id="Curve_ipy8f"]
+min_value = -1.0
+_data = [Vector2(0, -0.0467533), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_umvvq"]
+_data = [Vector2(0.295455, 0.282468), 0.0, 0.0, 0, 0, Vector2(0.944805, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_18yyj"]
+curve_x = SubResource("Curve_ipy8f")
+curve_y = SubResource("Curve_umvvq")
+
+[sub_resource type="Curve" id="Curve_oq5u7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_o3coe"]
+curve = SubResource("Curve_oq5u7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vt0dj"]
+angle_max = 668.6
+spread = 180.0
+flatness = 0.637
+initial_velocity_max = 3.0
+directional_velocity_min = 5.0
+directional_velocity_max = 8.0
+directional_velocity_curve = SubResource("CurveXYZTexture_18yyj")
+gravity = Vector3(0, 0, 0)
+attractor_interaction_enabled = false
+scale_min = 0.1
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_o3coe")
+hue_variation_max = 0.11
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vf8i"]
+albedo_color = Color(1, 0.843137, 0, 1)
+metallic = 0.37
+metallic_specular = 1.0
+emission_enabled = true
+emission = Color(0.866764, 0.838459, 0, 1)
+emission_energy_multiplier = 4.3
+grow_amount = 7.153
+
+[sub_resource type="SphereMesh" id="SphereMesh_f5tej"]
+material = SubResource("StandardMaterial3D_5vf8i")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lh547"]
+radius = 0.8
+
+[node name="Collectible" type="Node3D"]
+script = ExtResource("1_6t8al")
+
+[node name="wholeHam2" parent="." instance=ExtResource("1_2dvxu")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.435241, 0.127016)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 30
+lifetime = 0.8
+process_material = SubResource("ParticleProcessMaterial_vt0dj")
+draw_pass_1 = SubResource("SphereMesh_f5tej")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 1, 0.384314, 1)
+light_energy = 3.348
+light_size = 1.0
+omni_range = 1.76992
+
+[node name="Area3D" type="Area3D" parent="."]
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.170552, 0)
+shape = SubResource("SphereShape3D_lh547")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

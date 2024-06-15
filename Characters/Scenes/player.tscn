@@ -1,0 +1,139 @@
+[gd_scene load_steps=18 format=3 uid="uid://cgfh6w5nnxn4j"]
+
+[ext_resource type="Script" path="res://Characters/Scripts/player.gd" id="1_evq36"]
+[ext_resource type="Script" path="res://Characters/Scripts/camera_mount.gd" id="2_0g5uf"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_uo3ox"]
+
+[sub_resource type="Gradient" id="Gradient_0evgg"]
+colors = PackedColorArray(0, 0.454902, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_y5jfc"]
+frequency = 0.0156
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_awnoi"]
+color_ramp = SubResource("Gradient_0evgg")
+noise = SubResource("FastNoiseLite_y5jfc")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_a8j8i"]
+noise_type = 2
+frequency = 0.4857
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_myn3r"]
+noise = SubResource("FastNoiseLite_a8j8i")
+
+[sub_resource type="Gradient" id="Gradient_dfto2"]
+offsets = PackedFloat32Array(0, 0.155738)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q2dgo"]
+frequency = 0.0141
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p7hwh"]
+color_ramp = SubResource("Gradient_dfto2")
+noise = SubResource("FastNoiseLite_q2dgo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxhqi"]
+albedo_color = Color(0.30221, 0.47, 0.2726, 1)
+albedo_texture = SubResource("NoiseTexture2D_awnoi")
+roughness_texture = SubResource("NoiseTexture2D_p7hwh")
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_myn3r")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5h4m8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ehonj"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qq6p8"]
+material = SubResource("StandardMaterial3D_ehonj")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5gela"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rtbio"]
+radius = 0.498304
+height = 2.61549
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+floor_block_on_wall = false
+script = ExtResource("1_evq36")
+
+[node name="Model" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_uo3ox")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_jxhqi")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(0.763688, 0, 0, 0, -3.83722e-08, -0.225292, 0, 0.877854, -9.84782e-09, 0, -0.0728253, 0.769349)
+mesh = SubResource("CapsuleMesh_uo3ox")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_jxhqi")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(0.763688, 0, 0, 0, -3.83722e-08, -0.208963, 0, 0.877854, -9.13405e-09, 0, -0.140085, 0.769349)
+mesh = SubResource("CapsuleMesh_uo3ox")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_jxhqi")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(0.158113, -0.145688, 0, 0.145688, 0.158113, 0, 0, 0, 0.215, 0.501137, -0.112255, 0.515311)
+mesh = SubResource("CapsuleMesh_5h4m8")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_jxhqi")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(0.158113, -0.145688, 0, 0.145688, 0.158113, 0, 0, 0, 0.215, 0.501137, -0.112255, -0.42396)
+mesh = SubResource("CapsuleMesh_5h4m8")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_jxhqi")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(-0.158007, 0.145804, -1.87959e-08, 0.145804, 0.158007, 0, 1.38134e-08, -1.27466e-08, -0.215, -0.534133, -0.112255, -0.42396)
+mesh = SubResource("CapsuleMesh_5h4m8")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_jxhqi")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(-0.158007, 0.145804, -1.87959e-08, 0.145804, 0.158007, 0, 1.38134e-08, -1.27466e-08, -0.215, -0.534133, -0.112255, 0.417616)
+mesh = SubResource("CapsuleMesh_5h4m8")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_jxhqi")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(0.2, 0, 0, 0, 0.196851, 0.0353482, 0, -0.0353482, 0.196851, -0.164606, 0.190638, 0.894444)
+mesh = SubResource("CapsuleMesh_qq6p8")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(0.2, 0, 0, 0, 0.196851, 0.0353482, 0, -0.0353482, 0.196851, 0.132916, 0.190638, 0.894444)
+mesh = SubResource("CapsuleMesh_qq6p8")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(0.137097, 0, 0, 0, 0.0777378, -0.220686, 0, 0.520094, 0.0329857, 0, 0, -1.23429)
+mesh = SubResource("CapsuleMesh_5gela")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_jxhqi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_rtbio")
+
+[node name="camera_mount" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 2, 0)
+spring_length = 7.0
+margin = 0.2
+script = ExtResource("2_0g5uf")
+
+[node name="Camera3D" type="Camera3D" parent="camera_mount"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.896605, -0.343109)
+light_color = Color(0.258824, 0.298039, 0.239216, 1)
+light_energy = 5.095
+light_volumetric_fog_energy = 0.0
+light_size = 1.0

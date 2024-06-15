@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://br2je45ijqwg0"]
+
+[ext_resource type="Script" path="res://Levels/Scripts/level_base.gd" id="1_2mcpt"]
+[ext_resource type="PackedScene" uid="uid://b7bks7d4m0pnj" path="res://Levels/Scenes/level 2 env.tscn" id="1_duxie"]
+
+[node name="Level2" type="Node" node_paths=PackedStringArray("spawn")]
+script = ExtResource("1_2mcpt")
+next_level = 3
+spawn = NodePath("Interactables/Spawn")
+
+[node name="Level2Env" parent="." instance=ExtResource("1_duxie")]
+
+[node name="Paths" type="Node3D" parent="."]
+
+[node name="Interactables" type="Node3D" parent="."]
+
+[node name="Spawn" type="Marker3D" parent="Interactables"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.353109, 0)

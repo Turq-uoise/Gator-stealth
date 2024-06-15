@@ -1,0 +1,175 @@
+[gd_scene load_steps=12 format=3 uid="uid://c2a38es4usph2"]
+
+[ext_resource type="Script" path="res://Characters/Scripts/enemy.gd" id="1_1lw8b"]
+[ext_resource type="Script" path="res://Characters/Scripts/Patrolling.gd" id="2_72dkx"]
+[ext_resource type="Script" path="res://Characters/Scripts/Alert.gd" id="3_cyear"]
+[ext_resource type="Script" path="res://Characters/Scripts/Chasing.gd" id="4_swuei"]
+[ext_resource type="Script" path="res://Characters/Scripts/Returning.gd" id="5_f0olj"]
+[ext_resource type="Script" path="res://Characters/Scripts/Caught.gd" id="6_jclhm"]
+[ext_resource type="Script" path="res://Characters/Scripts/Freeze.gd" id="7_tiwf3"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_m7nir"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78ea3"]
+roughness = 0.35
+emission_enabled = true
+emission = Color(1.01075e-06, 0, 0.452782, 1)
+emission_energy_multiplier = 11.07
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gkk5r"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_chojq"]
+radius = 1.057
+
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "detection_light", "detection_timer", "raycast_array", "raycast_container")]
+script = ExtResource("1_1lw8b")
+nav_agent = NodePath("NavigationAgent3D")
+detection_light = NodePath("Model/SpotLight3D")
+detection_timer = NodePath("DetectionTimer")
+raycast_array = [NodePath("RaycastContainer/RayCast3D"), NodePath("RaycastContainer/RayCast3D2"), NodePath("RaycastContainer/RayCast3D3"), NodePath("RaycastContainer/RayCast3D4"), NodePath("RaycastContainer/RayCast3D5"), NodePath("RaycastContainer/RayCast3D6"), NodePath("RaycastContainer/RayCast3D7"), NodePath("RaycastContainer/RayCast3D8"), NodePath("RaycastContainer/RayCast3D9"), NodePath("RaycastContainer/RayCast3D10"), NodePath("RaycastContainer/RayCast3D11"), NodePath("RaycastContainer/RayCast3D12"), NodePath("RaycastContainer/RayCast3D13")]
+raycast_container = NodePath("RaycastContainer")
+
+[node name="Model" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model"]
+mesh = SubResource("CapsuleMesh_m7nir")
+surface_material_override/0 = SubResource("StandardMaterial3D_78ea3")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.102263)
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+light_volumetric_fog_energy = 5.087
+spot_range = 11.155
+spot_angle = 26.9973
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_gkk5r")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_chojq")
+
+[node name="RaycastContainer" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.5, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="RaycastContainer"]
+transform = Transform3D(0.894934, 0, -0.446198, 0, 1, 0, 0.446198, 0, 0.894934, 0, 0, 0)
+target_position = Vector3(0, 0, 10)
+collision_mask = 3
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
+[node name="RayCast3D2" type="RayCast3D" parent="RaycastContainer"]
+transform = Transform3D(0.894934, 0, 0.446198, 0, 1, 0, -0.446198, 0, 0.894934, 0, 0, 0)
+target_position = Vector3(0, 0, 10)
+collision_mask = 3
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
+[node name="RayCast3D3" type="RayCast3D" parent="RaycastContainer"]
+transform = Transform3D(0.956305, 0, -0.292372, 0, 1, 0, 0.292372, 0, 0.956305, 0, 0, 0)
+target_position = Vector3(0, 0, 10)
+collision_mask = 3
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
+[node name="RayCast3D4" type="RayCast3D" parent="RaycastContainer"]
+transform = Transform3D(0.956305, 0, 0.292372, 0, 1, 0, -0.292372, 0, 0.956305, 0, 0, 0)
+target_position = Vector3(0, 0, 10)
+collision_mask = 3
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
+[node name="RayCast3D8" type="RayCast3D" parent="RaycastContainer"]
+transform = Transform3D(0.93358, 0, -0.358368, 0, 1, 0, 0.358368, 0, 0.93358, 0, 0, 0)
+target_position = Vector3(0, 0, 10)
+collision_mask = 3
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
+[node name="RayCast3D9" type="RayCast3D" parent="RaycastContainer"]
+transform = Transform3D(0.93358, 0, 0.358368, 0, 1, 0, -0.358368, 0, 0.93358, 0, 0, 0)
+target_position = Vector3(0, 0, 10)
+collision_mask = 3
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
+[node name="RayCast3D5" type="RayCast3D" parent="RaycastContainer"]
+transform = Transform3D(0.990268, 0, -0.139173, 0, 1, 0, 0.139173, 0, 0.990268, 0, 0, 0)
+target_position = Vector3(0, 0, 10)
+collision_mask = 3
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
+[node name="RayCast3D6" type="RayCast3D" parent="RaycastContainer"]
+transform = Transform3D(0.990268, 0, 0.139173, 0, 1, 0, -0.139173, 0, 0.990268, 0, 0, 0)
+target_position = Vector3(0, 0, 10)
+collision_mask = 3
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
+[node name="RayCast3D10" type="RayCast3D" parent="RaycastContainer"]
+transform = Transform3D(0.978147, 0, -0.207912, 0, 1, 0, 0.207912, 0, 0.978147, 0, 0, 0)
+target_position = Vector3(0, 0, 10)
+collision_mask = 3
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
+[node name="RayCast3D11" type="RayCast3D" parent="RaycastContainer"]
+transform = Transform3D(0.978147, 0, 0.207912, 0, 1, 0, -0.207912, 0, 0.978147, 0, 0, 0)
+target_position = Vector3(0, 0, 10)
+collision_mask = 3
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
+[node name="RayCast3D12" type="RayCast3D" parent="RaycastContainer"]
+transform = Transform3D(0.997564, 0, -0.0697565, 0, 1, 0, 0.0697565, 0, 0.997564, 0, 0, 0)
+target_position = Vector3(0, 0, 10)
+collision_mask = 3
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
+[node name="RayCast3D13" type="RayCast3D" parent="RaycastContainer"]
+transform = Transform3D(0.997564, 0, 0.0697565, 0, 1, 0, -0.0697565, 0, 0.997564, 0, 0, 0)
+target_position = Vector3(0, 0, 10)
+collision_mask = 3
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
+[node name="RayCast3D7" type="RayCast3D" parent="RaycastContainer"]
+target_position = Vector3(0, 0, 10)
+collision_mask = 3
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
+[node name="DetectionTimer" type="Timer" parent="."]
+wait_time = 1.8
+one_shot = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="States" type="Node" parent="."]
+
+[node name="Patrolling" type="Node" parent="States"]
+script = ExtResource("2_72dkx")
+
+[node name="Alert" type="Node" parent="States"]
+script = ExtResource("3_cyear")
+
+[node name="Chasing" type="Node" parent="States"]
+script = ExtResource("4_swuei")
+
+[node name="Returning" type="Node" parent="States"]
+script = ExtResource("5_f0olj")
+
+[node name="Caught" type="Node" parent="States"]
+script = ExtResource("6_jclhm")
+
+[node name="Freeze" type="Node" parent="States"]
+script = ExtResource("7_tiwf3")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="DetectionTimer" to="." method="_on_detection_timer_timeout"]
+[connection signal="player_caught" from="States/Caught" to="." method="_on_player_caught"]

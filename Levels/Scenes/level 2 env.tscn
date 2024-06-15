@@ -1,0 +1,226 @@
+[gd_scene load_steps=23 format=3 uid="uid://b7bks7d4m0pnj"]
+
+[ext_resource type="PackedScene" uid="uid://bjhqulonvtu2c" path="res://Objects/Assets/Models/Roads/ground_grass.glb" id="1_i7mvy"]
+[ext_resource type="PackedScene" uid="uid://sqgecnfmvxag" path="res://Objects/Assets/Models/iron-fence-border.glb" id="2_a7xjh"]
+[ext_resource type="PackedScene" uid="uid://jsast268hnvr" path="res://Objects/Assets/Models/iron-fence-border-curve.glb" id="3_t4w30"]
+[ext_resource type="PackedScene" uid="uid://5ep5cnp5rttb" path="res://Objects/Assets/Models/iron-fence.glb" id="4_mrqnw"]
+[ext_resource type="PackedScene" uid="uid://bqigpmyttcm8n" path="res://Objects/Assets/Models/iron-fence-border-gate.glb" id="5_tl621"]
+[ext_resource type="PackedScene" uid="uid://c8s8p7g5abbcx" path="res://Objects/Assets/Models/iron-fence-damaged.glb" id="6_5siws"]
+[ext_resource type="PackedScene" uid="uid://cvo6clxs82ioc" path="res://Objects/Assets/Models/iron-fence-bar.glb" id="7_bf704"]
+
+[sub_resource type="Gradient" id="Gradient_vnv3l"]
+offsets = PackedFloat32Array(0, 0.11194, 0.858209, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.0562916, 0.0562916, 0.0562916, 1, 0.847474, 0.847475, 0.847474, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qbk7f"]
+gradient = SubResource("Gradient_vnv3l")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_glypw"]
+sky_top_color = Color(0.296854, 0.35646, 0.439368, 1)
+sky_horizon_color = Color(0.42663, 0.436151, 0.45118, 1)
+ground_bottom_color = Color(0.296854, 0.35646, 0.439368, 1)
+ground_horizon_color = Color(0.42663, 0.436151, 0.45118, 1)
+sun_angle_max = 3.98
+sun_curve = 1.47737
+
+[sub_resource type="Sky" id="Sky_hs3j1"]
+sky_material = SubResource("ProceduralSkyMaterial_glypw")
+
+[sub_resource type="Environment" id="Environment_5018j"]
+background_mode = 2
+sky = SubResource("Sky_hs3j1")
+ambient_light_color = Color(0.392157, 0.392157, 0.458824, 1)
+ambient_light_sky_contribution = 0.18
+ambient_light_energy = 1.12
+tonemap_mode = 3
+tonemap_exposure = 0.61
+tonemap_white = 2.15
+ssao_enabled = true
+fog_light_energy = 1.89
+volumetric_fog_anisotropy = 0.67
+volumetric_fog_length = 27.21
+adjustment_enabled = true
+adjustment_contrast = 1.25
+adjustment_saturation = 1.25
+adjustment_color_correction = SubResource("GradientTexture1D_qbk7f")
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_xsayb"]
+filter_ledge_spans = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tc2j0"]
+size = Vector3(61.1064, 0.001, 31.0155)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y1lnk"]
+size = Vector3(4, 1, 0.168945)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nejjt"]
+size = Vector3(0.5, 1, 0.168945)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n4n6h"]
+size = Vector3(3.48865, 1.5, 0.0947266)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aikap"]
+size = Vector3(1.51538, 1.5, 0.0947266)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qioby"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_adpor"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ygcrc"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yi6fh"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="Level2Env" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5018j")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_xsayb")
+
+[node name="ground" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="ground_grass2" parent="NavigationRegion3D/ground" instance=ExtResource("1_i7mvy")]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 10, -22, 0.132323, 8)
+
+[node name="border1" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="iron-fence-border5" parent="NavigationRegion3D/border1" instance=ExtResource("2_a7xjh")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, -0.0176768, 0.0697951)
+
+[node name="iron-fence-border6" parent="NavigationRegion3D/border1" instance=ExtResource("2_a7xjh")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, -0.0176768, 1.0698)
+
+[node name="iron-fence-border7" parent="NavigationRegion3D/border1" instance=ExtResource("2_a7xjh")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, -0.0176768, 2.0698)
+
+[node name="iron-fence-border10" parent="NavigationRegion3D/border1" instance=ExtResource("2_a7xjh")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, -0.0176768, 3.0698)
+
+[node name="iron-fence-border8" parent="NavigationRegion3D/border1" instance=ExtResource("2_a7xjh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1, -0.0176768, 3.0698)
+
+[node name="iron-fence-border15" parent="NavigationRegion3D/border1" instance=ExtResource("2_a7xjh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2, -0.0176768, 3.0698)
+
+[node name="iron-fence-border16" parent="NavigationRegion3D/border1" instance=ExtResource("2_a7xjh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1, -0.0176768, 3.0698)
+
+[node name="iron-fence-border9" parent="NavigationRegion3D/border1" instance=ExtResource("2_a7xjh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 2, -0.0176768, 3.0698)
+
+[node name="iron-fence-border11" parent="NavigationRegion3D/border1" instance=ExtResource("2_a7xjh")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -2, -0.0176768, 2.0698)
+
+[node name="iron-fence-border14" parent="NavigationRegion3D/border1" instance=ExtResource("2_a7xjh")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -2, -0.0176768, 3.0698)
+
+[node name="iron-fence-border12" parent="NavigationRegion3D/border1" instance=ExtResource("2_a7xjh")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -2, -0.0176768, 1.0698)
+
+[node name="iron-fence-border13" parent="NavigationRegion3D/border1" instance=ExtResource("2_a7xjh")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -2, -0.0176768, 0.0697951)
+
+[node name="iron-fence-border3" parent="NavigationRegion3D/border1" instance=ExtResource("2_a7xjh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.0176768, -0.930205)
+
+[node name="iron-fence-border4" parent="NavigationRegion3D/border1" instance=ExtResource("2_a7xjh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.0176768, -0.930205)
+
+[node name="iron-fence-border-curve2" parent="NavigationRegion3D/border1" instance=ExtResource("3_t4w30")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.99963, -0.0176768, -0.930233)
+
+[node name="iron-fence-border-curve5" parent="NavigationRegion3D/border1" instance=ExtResource("3_t4w30")]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -2.00037, -0.0176768, -0.930233)
+
+[node name="iron-fence2" parent="NavigationRegion3D/border1" instance=ExtResource("4_mrqnw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0176768, -0.929381)
+
+[node name="iron-fence-border-gate2" parent="NavigationRegion3D/border1" instance=ExtResource("5_tl621")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0176768, -0.929789)
+
+[node name="iron-fence-damaged2" parent="NavigationRegion3D/border1" instance=ExtResource("6_5siws")]
+transform = Transform3D(0.99995, 0.0100006, 0, -0.0100006, 0.99995, 0, 0, 0, 1, -0.00557515, -0.0262871, 3.96947)
+
+[node name="iron-fence-bar2" parent="NavigationRegion3D/border1" instance=ExtResource("7_bf704")]
+transform = Transform3D(0.845514, 0.533954, 0, -0.533954, 0.845514, 0, 0, 0, 1, -0.254784, 0.121424, 3.51677)
+
+[node name="iron-fence-bar3" parent="NavigationRegion3D/border1" instance=ExtResource("7_bf704")]
+transform = Transform3D(0.885175, -0.465259, 0, 0.465259, 0.885175, 0, 0, 0, 1, 0.245216, 0.121424, 3.51677)
+
+[node name="iron-fence-bar4" parent="NavigationRegion3D/border1" instance=ExtResource("7_bf704")]
+transform = Transform3D(0.999213, 0.0396609, 0, -0.0396609, 0.999213, 0, 0, 0, 1, -0.114844, 0.0817327, 3.51677)
+
+[node name="iron-fence-bar5" parent="NavigationRegion3D/border1" instance=ExtResource("7_bf704")]
+transform = Transform3D(0.999213, 0.0396609, 0, -0.0396609, 0.999213, 0, 0, 0, 1, 0.127257, 0.0817327, 3.51677)
+
+[node name="iron-fence-bar6" parent="NavigationRegion3D/border1" instance=ExtResource("7_bf704")]
+transform = Transform3D(0.999213, 0.0396609, 0, -0.0396609, 0.999213, 0, 0, 0, 1, -0.000406951, 0.0817327, 3.51677)
+
+[node name="collision" type="StaticBody3D" parent="NavigationRegion3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.9268, -0.0181768, 7.96881)
+shape = SubResource("BoxShape3D_tc2j0")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.344832, -1.41553)
+shape = SubResource("BoxShape3D_y1lnk")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -2.24085, 0.344832, -1.12262)
+shape = SubResource("BoxShape3D_nejjt")
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.21332, 0.344832, -1.08837)
+shape = SubResource("BoxShape3D_nejjt")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.5, 0.344832, 1.08447)
+shape = SubResource("BoxShape3D_y1lnk")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.43826, 0.344832, 1.08447)
+shape = SubResource("BoxShape3D_y1lnk")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.239916, 0.049627, 3.54736)
+shape = SubResource("BoxShape3D_n4n6h")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23501, 0.049627, 3.54736)
+shape = SubResource("BoxShape3D_aikap")
+
+[node name="MeshInstance3D_col" type="StaticBody3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(4.8, 0, 0, 0, 3, 0, 0, 0, 0.924, 0, 1.48232, 3.0375)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/collision/MeshInstance3D_col"]
+shape = SubResource("ConvexPolygonShape3D_qioby")
+
+[node name="walls" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 0.924, 2.5, 1.48232, 3.5375)
+mesh = SubResource("BoxMesh_adpor")
+
+[node name="MeshInstance3D_col" type="StaticBody3D" parent="NavigationRegion3D/walls/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/walls/MeshInstance3D/MeshInstance3D_col"]
+shape = SubResource("ConvexPolygonShape3D_ygcrc")
+
+[node name="MeshInstance3D33" type="MeshInstance3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, -2.5, 1.48232, 3.5)
+mesh = SubResource("BoxMesh_adpor")
+
+[node name="MeshInstance3D2_col" type="StaticBody3D" parent="NavigationRegion3D/walls/MeshInstance3D33"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/walls/MeshInstance3D33/MeshInstance3D2_col"]
+shape = SubResource("ConvexPolygonShape3D_yi6fh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.938873, 0.0873944, -0.332986, 0.0987186, 0.858276, 0.503603, 0.329806, -0.505692, 0.797185, 0, 0, 0)
+sky_mode = 2

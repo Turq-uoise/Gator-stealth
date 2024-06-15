@@ -1,0 +1,183 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1j4bxvtltu7f"]
+
+[ext_resource type="Script" path="res://Components/Scripts/hud.gd" id="1_s6054"]
+[ext_resource type="Texture2D" uid="uid://chwqkyguxhp6y" path="res://Objects/Assets/Models/Textures/seamless-texture-grass-texture.jpg" id="2_etg52"]
+[ext_resource type="Theme" uid="uid://cfl8bskvw8tuo" path="res://UI/Components/menu_button_theme.tres" id="3_iqw1g"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_s6054")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Completed" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -338.0
+offset_top = -123.0
+offset_right = 338.0
+offset_bottom = 123.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 86
+bbcode_enabled = true
+text = "[center][wave][rainbow]COMPLETED IN "
+scroll_active = false
+
+[node name="Caught" type="RichTextLabel" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.0
+offset_top = -60.0
+offset_right = 275.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 86
+bbcode_enabled = true
+text = "[center][wave][color=red]Caught!"
+scroll_active = false
+
+[node name="LevelComplete" type="MarginContainer" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = -272.0
+offset_right = 272.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="Control/LevelComplete"]
+self_modulate = Color(1, 0.258824, 0.27451, 0.419608)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/LevelComplete/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -154.0
+offset_right = 150.0
+offset_bottom = 154.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="Next" type="TextureButton" parent="Control/LevelComplete/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+texture_normal = ExtResource("2_etg52")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/LevelComplete/Panel/VBoxContainer/Next"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.0
+offset_top = -28.5
+offset_right = 135.0
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("3_iqw1g")
+bbcode_enabled = true
+text = "[center]Next Level"
+scroll_active = false
+
+[node name="Restart" type="TextureButton" parent="Control/LevelComplete/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+texture_normal = ExtResource("2_etg52")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/LevelComplete/Panel/VBoxContainer/Restart"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.0
+offset_top = -28.5
+offset_right = 135.0
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("3_iqw1g")
+bbcode_enabled = true
+text = "[center]Restart"
+scroll_active = false
+
+[node name="Quit" type="TextureButton" parent="Control/LevelComplete/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+texture_normal = ExtResource("2_etg52")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/LevelComplete/Panel/VBoxContainer/Quit"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.0
+offset_top = -28.5
+offset_right = 135.0
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("3_iqw1g")
+bbcode_enabled = true
+text = "[center]Main Menu"
+scroll_active = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
